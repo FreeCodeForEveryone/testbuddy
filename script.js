@@ -275,7 +275,7 @@
       if (sortKey === "name") {
         av = a.name.toLowerCase();
         bv = b.name.toLowerCase();
-        return av < bv ? sortDir : av > bv ? -sortDir : 0;
+        return av < bv ? -sortDir : av > bv ? sortDir : 0;
       }
       if (sortKey === "avg") {
         av = avgScore(a);
