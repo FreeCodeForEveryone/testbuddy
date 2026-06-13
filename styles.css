@@ -562,6 +562,110 @@ body {
   font-weight: 600;
 }
 
+/* ---- Deep-dive cards ---- */
+.deep-dive-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.dd-card {
+  --card-color: var(--accent);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--card-color);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dd-featured {
+  box-shadow: 0 6px 24px color-mix(in srgb, var(--card-color) 22%, transparent);
+}
+
+.dd-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dd-dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dd-titles {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.dd-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.dd-vendor {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.dd-avg {
+  margin-left: auto;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--card-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.dd-tagline {
+  font-weight: 600;
+}
+
+.dd-notes {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.dd-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.dd-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border);
+}
+
+.dd-sources-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.dd-source {
+  font-size: 0.75rem;
+  color: var(--card-color);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.dd-source:hover {
+  border-color: var(--card-color);
+  text-decoration: underline;
+}
+
 /* ---- Tooltip ---- */
 .tooltip {
   position: fixed;

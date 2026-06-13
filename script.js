@@ -366,6 +366,51 @@
     });
   }
 
+  // ---- Tool deep-dive cards ---------------------------------------------
+  function renderDeepDive() {
+    var box = document.getElementById("deep-dive-cards");
+    if (!box) return;
+    box.innerHTML = "";
+    // Show strongest tools first by average score.
+    var ordered = TOOLS.slice().sort(function (a, b) {
+      return avgScore(b) - avgScore(a);
+    });
+    ordered.forEach(function (t) {
+      var card = el("div", { class: "dd-card" + (t.featured ? " dd-featured" : "") });
+      card.style.setProperty("--card-color", t.color);
+
+      var head = el("div", { class: "dd-head" });
+      var dot = el("span", { class: "dd-dot" });
+      dot.style.background = t.color;
+      head.appendChild(dot);
+      var titleWrap = el("div", { class: "dd-titles" });
+      titleWrap.appendChild(el("span", { class: "dd-name", text: t.name }));
+      titleWrap.appendChild(el("span", { class: "dd-vendor", text: t.vendor + " · " + t.type }));
+      head.appendChild(titleWrap);
+      head.appendChild(el("span", { class: "dd-avg", text: avgScore(t).toFixed(1) }));
+      card.appendChild(head);
+
+      card.appendChild(el("p", { class: "dd-tagline", text: t.tagline }));
+      if (t.notes) card.appendChild(el("p", { class: "dd-notes", text: t.notes }));
+
+      var meta = el("div", { class: "dd-meta" });
+      meta.appendChild(el("span", { class: "dd-pricing", text: "💳 " + t.pricing }));
+      card.appendChild(meta);
+
+      if (t.sources && t.sources.length) {
+        var src = el("div", { class: "dd-sources" });
+        src.appendChild(el("span", { class: "dd-sources-label", text: "Sources:" }));
+        t.sources.forEach(function (s) {
+          src.appendChild(
+            el("a", { class: "dd-source", href: s.url, target: "_blank", rel: "noopener", text: s.label })
+          );
+        });
+        card.appendChild(src);
+      }
+      box.appendChild(card);
+    });
+  }
+
   // ---- Theme -------------------------------------------------------------
   function initTheme() {
     var toggle = document.getElementById("theme-toggle");
@@ -412,6 +457,7 @@
     populateCapabilitySelect();
     renderAll();
     renderSpotlight();
+    renderDeepDive();
   }
 
   if (document.readyState === "loading") {
