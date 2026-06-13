@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TestBuddy &mdash; Example Site</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <span class="brand">TestBuddy</span>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#counter">Demo</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+      <div class="hero-content">
+        <h1>Welcome to <span class="accent">TestBuddy</span></h1>
+        <p class="subtitle">A tiny, dependency-free example website.</p>
+        <a class="cta" href="#counter">Try the demo</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="features" class="section">
+        <h2>Features</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Zero dependencies</h3>
+            <p>Plain HTML, CSS, and JavaScript. Open it and it just works.</p>
+          </article>
+          <article class="card">
+            <h3>Responsive</h3>
+            <p>Looks good on phones, tablets, and desktops.</p>
+          </article>
+          <article class="card">
+            <h3>Interactive</h3>
+            <p>A live counter and theme toggle, powered by vanilla JS.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="counter" class="section section-alt">
+        <h2>Live Demo</h2>
+        <p>Click the buttons &mdash; state updates instantly with no reload.</p>
+        <div class="counter">
+          <button id="decrement" class="btn" aria-label="Decrease">&minus;</button>
+          <span id="count" class="count">0</span>
+          <button id="increment" class="btn" aria-label="Increase">+</button>
+        </div>
+        <button id="theme-toggle" class="btn-secondary">Toggle dark mode</button>
+      </section>
+
+      <section id="about" class="section">
+        <h2>About</h2>
+        <p>
+          This site was generated as an example commit to the
+          <code>testbuddy</code> repository to demonstrate a working static
+          website end to end.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> TestBuddy. Example project.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
