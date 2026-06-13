@@ -3,70 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TestBuddy &mdash; Example Site</title>
+    <title>Devin vs. Other AI Tools &mdash; Interactive Comparison</title>
+    <meta
+      name="description"
+      content="An interactive, data-driven comparison of Devin and other AI developer tools across autonomy, refactoring, testing, and more."
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="hero">
       <nav class="nav">
-        <span class="brand">TestBuddy</span>
+        <span class="brand">AI&nbsp;Tools<span class="accent">·</span>Compare</span>
         <ul class="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#counter">Demo</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#radar">Compare</a></li>
+          <li><a href="#table">Scorecard</a></li>
+          <li><a href="#spotlight">Capabilities</a></li>
         </ul>
+        <button id="theme-toggle" class="btn-secondary" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
       </nav>
       <div class="hero-content">
-        <h1>Welcome to <span class="accent">TestBuddy</span></h1>
-        <p class="subtitle">A tiny, dependency-free example website.</p>
-        <a class="cta" href="#counter">Try the demo</a>
+        <p class="eyebrow">Interactive comparison</p>
+        <h1><span class="accent">Devin</span> vs. other AI tools</h1>
+        <p class="subtitle">
+          Pick the tools you care about and see how they stack up across the
+          capabilities that matter for real software engineering.
+        </p>
+        <a class="cta" href="#radar">Start comparing</a>
       </div>
     </header>
 
     <main>
-      <section id="features" class="section">
-        <h2>Features</h2>
-        <div class="cards">
-          <article class="card">
-            <h3>Zero dependencies</h3>
-            <p>Plain HTML, CSS, and JavaScript. Open it and it just works.</p>
-          </article>
-          <article class="card">
-            <h3>Responsive</h3>
-            <p>Looks good on phones, tablets, and desktops.</p>
-          </article>
-          <article class="card">
-            <h3>Interactive</h3>
-            <p>A live counter and theme toggle, powered by vanilla JS.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="counter" class="section section-alt">
-        <h2>Live Demo</h2>
-        <p>Click the buttons &mdash; state updates instantly with no reload.</p>
-        <div class="counter">
-          <button id="decrement" class="btn" aria-label="Decrease">&minus;</button>
-          <span id="count" class="count">0</span>
-          <button id="increment" class="btn" aria-label="Increase">+</button>
-        </div>
-        <button id="theme-toggle" class="btn-secondary">Toggle dark mode</button>
-      </section>
-
-      <section id="about" class="section">
-        <h2>About</h2>
-        <p>
-          This site was generated as an example commit to the
-          <code>testbuddy</code> repository to demonstrate a working static
-          website end to end.
+      <!-- Interactive selector + radar chart -->
+      <section id="radar" class="section">
+        <h2>Build your comparison</h2>
+        <p class="section-lead">
+          Toggle tools below. The radar chart and scorecard update instantly.
         </p>
+        <div id="tool-toggles" class="tool-toggles" role="group" aria-label="Select tools to compare"></div>
+
+        <div class="radar-wrap">
+          <div class="radar-chart-box">
+            <svg
+              id="radar-chart"
+              viewBox="0 0 420 420"
+              role="img"
+              aria-label="Radar chart comparing selected tools across capabilities"
+            ></svg>
+          </div>
+          <div id="radar-legend" class="radar-legend" aria-hidden="false"></div>
+        </div>
+      </section>
+
+      <!-- Sortable / filterable scorecard table -->
+      <section id="table" class="section section-alt">
+        <h2>Capability scorecard</h2>
+        <p class="section-lead">
+          Click a column header to sort. Use the search box to filter tools.
+        </p>
+        <div class="table-controls">
+          <input
+            id="table-search"
+            class="search"
+            type="search"
+            placeholder="Filter tools…"
+            aria-label="Filter tools"
+          />
+          <label class="highlight-toggle">
+            <input type="checkbox" id="highlight-devin" checked />
+            Highlight Devin
+          </label>
+        </div>
+        <div class="table-scroll">
+          <table id="score-table" class="score-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="hint">Scores are on a 0–5 scale. Hover a capability header for its definition.</p>
+      </section>
+
+      <!-- Capability spotlight with animated bars -->
+      <section id="spotlight" class="section">
+        <h2>Capability spotlight</h2>
+        <p class="section-lead">
+          Choose a capability to see how every tool ranks for it.
+        </p>
+        <div class="spotlight-controls">
+          <label for="capability-select">Capability</label>
+          <select id="capability-select" class="select"></select>
+        </div>
+        <p id="capability-desc" class="capability-desc"></p>
+        <div id="spotlight-bars" class="spotlight-bars"></div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>&copy; <span id="year"></span> TestBuddy. Example project.</p>
+      <p>
+        Built as an interactive demo in the
+        <code>testbuddy</code> repo. Scores are an opinionated snapshot &mdash;
+        edit <code>data.js</code> to make them your own.
+      </p>
+      <p class="copyright">&copy; <span id="year"></span> AI Tools Compare.</p>
     </footer>
 
+    <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
