@@ -107,11 +107,30 @@
   function renderRadar() {
     var svg = document.getElementById("radar-chart");
     svg.innerHTML = "";
-    var cx = 210,
-      cy = 210,
-      maxR = 150,
+    var cx = 280,
+      cy = 215,
+      maxR = 135,
       n = CAPS.length;
     var levels = 5;
+
+    // Split a label into at most two balanced lines so long captions
+    // wrap instead of spilling outside the chart box.
+    function wrapLabel(str) {
+      var words = str.split(" ");
+      if (words.length < 2 || str.length <= 12) return [str];
+      var best = [str],
+        bestScore = Infinity;
+      for (var k = 1; k < words.length; k++) {
+        var l1 = words.slice(0, k).join(" ");
+        var l2 = words.slice(k).join(" ");
+        var score = Math.max(l1.length, l2.length);
+        if (score < bestScore) {
+          bestScore = score;
+          best = [l1, l2];
+        }
+      }
+      return best;
+    }
 
     function point(i, r) {
       var angle = (Math.PI * 2 * i) / n - Math.PI / 2;
@@ -149,18 +168,23 @@
           class: "radar-axis",
         })
       );
-      var labelP = point(a, maxR + 26);
+      var labelP = point(a, maxR + 18);
       var anchor = "middle";
       if (labelP.x > cx + 5) anchor = "start";
       else if (labelP.x < cx - 5) anchor = "end";
+      var lines = wrapLabel(CAPS[a].label);
+      var lineH = 12;
+      var startY = labelP.y - ((lines.length - 1) * lineH) / 2;
       var label = svgEl("text", {
-        x: labelP.x,
-        y: labelP.y,
         "text-anchor": anchor,
         class: "radar-label",
         "dominant-baseline": "middle",
       });
-      label.textContent = CAPS[a].label;
+      lines.forEach(function (ln, idx) {
+        var tspan = svgEl("tspan", { x: labelP.x, y: startY + idx * lineH });
+        tspan.textContent = ln;
+        label.appendChild(tspan);
+      });
       svg.appendChild(label);
     }
 
