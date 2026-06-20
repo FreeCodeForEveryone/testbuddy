@@ -3,17 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Devin vs. Other AI Tools &mdash; Interactive Comparison</title>
+    <title>AI Coding Agents Compared &mdash; Devin vs. Codex, Claude Code, Cursor &amp; more</title>
     <meta
       name="description"
-      content="An interactive, data-driven comparison of Devin and other AI developer tools across autonomy, refactoring, testing, and more."
+      content="An interactive, data-driven comparison of Devin and other AI developer tools and coding agents across autonomy, refactoring, testing, and more. Updated June 2026."
     />
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=3" />
   </head>
   <body>
+    <div class="bg-aurora" aria-hidden="true"></div>
     <header class="hero">
       <nav class="nav">
-        <span class="brand">AI&nbsp;Tools<span class="accent">·</span>Compare</span>
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true"></span>
+          AI&nbsp;Agents<span class="accent">·</span>Compare
+        </a>
         <ul class="nav-links">
           <li><a href="#radar">Compare</a></li>
           <li><a href="#table">Scorecard</a></li>
@@ -24,14 +35,24 @@
           <span class="theme-icon">🌙</span>
         </button>
       </nav>
-      <div class="hero-content">
-        <p class="eyebrow">Interactive comparison</p>
-        <h1><span class="accent">Devin</span> vs. other AI tools</h1>
+      <div class="hero-content" id="top">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Updated June&nbsp;2026 · 9 agents</p>
+        <h1>The <span class="accent">AI coding agent</span> showdown</h1>
         <p class="subtitle">
-          Pick the tools you care about and see how they stack up across the
-          capabilities that matter for real software engineering.
+          Devin, Codex, Claude Code, Cursor, Copilot &amp; more — pick the agents
+          you care about and see how they stack up across the capabilities that
+          matter for real software engineering.
         </p>
-        <a class="cta" href="#radar">Start comparing</a>
+        <div class="hero-actions">
+          <a class="cta" href="#radar">Start comparing</a>
+          <a class="cta-ghost" href="#deep-dive">Read the deep-dive</a>
+        </div>
+        <dl class="hero-stats">
+          <div class="stat"><dt>Agents</dt><dd>9</dd></div>
+          <div class="stat"><dt>Capabilities</dt><dd>9</dd></div>
+          <div class="stat"><dt>Sources</dt><dd>Primary</dd></div>
+          <div class="stat"><dt>Snapshot</dt><dd>Jun&nbsp;’26</dd></div>
+        </dl>
       </div>
     </header>
 
@@ -107,7 +128,7 @@
         </p>
         <div id="deep-dive-cards" class="deep-dive-cards"></div>
         <p class="hint">
-          Snapshot from mid-2025 research; capabilities and pricing change fast —
+          Snapshot from mid-2026 research; capabilities and pricing change fast —
           follow the source links for the latest.
         </p>
       </section>
@@ -115,16 +136,16 @@
 
     <footer class="footer">
       <p>
-        Built as an interactive demo in the
-        <code>testbuddy</code> repo. Scores are an opinionated snapshot &mdash;
-        edit <code>data.js</code> to make them your own.
+        An interactive, data-driven comparison of AI coding agents, built in the
+        <code>testbuddy</code> repo. Scores are an opinionated, source-backed
+        snapshot &mdash; edit <code>data.js</code> to make them your own.
       </p>
       <p class="copyright">&copy; <span id="year"></span> AI Tools Compare.</p>
     </footer>
 
     <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
 
-    <script src="data.js?v=2"></script>
-    <script src="script.js?v=2"></script>
+    <script src="data.js?v=3"></script>
+    <script src="script.js?v=3"></script>
   </body>
 </html>
